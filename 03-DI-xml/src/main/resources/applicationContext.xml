@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--Contructor方式-->
+    <bean id="userContructorDI" class="priv.huke.po.UserContructorDI">
+        <constructor-arg name="id" value="13"/>
+        <constructor-arg name="name" value="Contructor"/>
+    </bean>
+
+    <!--Set手动装配方式-->
+    <bean id="userSetDI" class="priv.huke.po.UserSetDI">
+        <property name="id" value="13"/>
+        <property name="name" value="Set"/>
+    </bean>
+
+
+    <bean id="userSetRef" class="priv.huke.po.UserSetRef">
+        <property name="id" value="13"/>
+        <property name="user" ref="userSetDI"/>
+        <property name="list">
+            <list>
+                <value>美美</value>
+                <value>小风</value>
+            </list>
+        </property>
+        <property name="set">
+            <set>
+                <bean id="userSetDI" class="priv.huke.po.UserSetDI">
+                    <property name="id" value="14"/>
+                    <property name="name" value="Set1"/>
+                </bean>
+                <bean id="userSetDI" class="priv.huke.po.UserSetDI">
+                    <property name="id" value="15"/>
+                    <property name="name" value="Set2"/>
+                </bean>
+            </set>
+        </property>
+        <property name="map">
+            <map>
+                <entry key="老王2" value="38"/>
+                <entry key="凤姐" value="38"/>
+                <entry key="如花" value="29"/>
+            </map>
+        </property>
+    </bean>
+</beans>
